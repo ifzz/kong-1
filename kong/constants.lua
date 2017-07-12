@@ -34,6 +34,19 @@ for i = 1, #plugins do
   plugin_map[plugins[i]] = true
 end
 
+local admin_api_allowed_methods = {
+  "GET",
+  "HEAD",
+  "PUT",
+  "PATCH",
+  "POST",
+  "DELETE",
+}
+
+for i = 1, #admin_api_allowed_methods do
+  admin_api_allowed_methods[admin_api_allowed_methods[i]] = true
+end
+
 return {
   PLUGINS_AVAILABLE = plugin_map,
   -- non-standard headers, specific to Kong
@@ -73,4 +86,7 @@ return {
     "kong_process_events",
     "kong_cluster_events",
   },
+  ADMIN_API = {
+    ALLOWED_METHODS = admin_api_allowed_methods,
+  }
 }
